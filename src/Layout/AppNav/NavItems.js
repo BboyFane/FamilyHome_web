@@ -122,14 +122,14 @@
 //     },
 // ];
 
-export const MainNav = [
-    {
-        icon: 'pe-7s-rocket',
-        // icon: 'pe-7s-keypad',
-        label: 'Dashboard',
-        to: '#/dashboards/basic',
-    },
-];
+// export const MainNav = [
+//     {
+//         icon: 'pe-7s-rocket',
+//         // icon: 'pe-7s-keypad',
+//         label: 'Dashboard',
+//         to: '#/dashboards/basic',
+//     },
+// ];
 
 export const Rooms = [
     {
@@ -152,7 +152,7 @@ export const Devices = [
     },
     {
         icon: 'pe-7s-plug',
-        label: 'Prise',
+        label: 'Prise micro-onde',
         to: '#'
     }
 ];
@@ -173,7 +173,17 @@ export const Users = [
 export const Profile = [
     {
         icon: 'pe-7s-user',
-        label: 'Famille Sylvestre',
+        label: 'Abonnement',
+        to: '#'
+    },
+    {
+        icon: 'pe-7s-user',
+        label: 'Factures',
+        to: '#'
+    },
+    {
+        icon: 'pe-7s-user',
+        label: 'Historique',
         to: '#'
     },
 ]
