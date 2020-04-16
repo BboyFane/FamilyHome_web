@@ -135,7 +135,7 @@ export const Rooms = [
     {
         icon: 'pe-7s-box2',
         label: 'Salon',
-        to: '#/rooms',
+        to: '#/rooms/basic',
     },
     {
         icon: 'pe-7s-box2',
