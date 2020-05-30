@@ -52,7 +52,7 @@ export default {
     },
     {
       name: 'Aide',
-      url: '/404',
+      url: '/help',
       icon: 'icon-bell',
 
     },
@@ -64,7 +64,7 @@ export default {
     {
       name: 'Logout',
       url: 'http://127.0.0.1:5500/index.html',
-
+      icon: 'icon-lock',
     },
 
    
