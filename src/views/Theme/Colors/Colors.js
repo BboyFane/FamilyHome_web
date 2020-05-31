@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, FormGroup,ListGroupItemHeading , Col, ListGroupItem, ListGroup, Input, ListGroupItemText, Label, Row } from 'reactstrap';
-import { AppSwitch } from '@coreui/react'
+
 
 
 class Colors extends Component {
@@ -87,39 +87,75 @@ class Colors extends Component {
                 <i className="fa fa-align-justify"></i><strong>Choix Abonnement</strong>
               </CardHeader>
               <CardBody>
+              <Row>
+                  <Col xs="6">
+                    <div className="radio">
+                      <label>
+                        <input type="radio" value="mensuel"/>
+                          {'  '}Mensuel
+                      </label>
+                    </div>
+                  </Col>
+                  <Col xs="6">
+                    <div className="radio">
+                      <label>
+                        <input type="radio" value="annuel" />
+                          {'  '}Annuel
+                      </label>
+                    </div>
+                  </Col>
+
+                </Row>
                 <ListGroup>
                   <ListGroupItem action >
                     <ListGroupItemHeading>
-                      <AppSwitch className={'mx-1'} variant={'3d'} color={'primary'} defaultChecked />
-                        {' '}Starter 0€
+                    <div className="radio">
+                      <label>
+                        <input type="radio" value="starter"/>
+                          {' '}Starter 0€
+                      </label>
+                    </div>
                       </ListGroupItemHeading>
                     <ListGroupItemText>
                     Une durée gratuite d'un mois avec la possibilité d'ajouter 1 contact, et 2 appareils connectés.
                     </ListGroupItemText>
                   </ListGroupItem>
+
                   <ListGroupItem action>
                     <ListGroupItemHeading>
-                    <AppSwitch className={'mx-1'} variant={'3d'} color={'primary'} />
-                      {' '}
-                      Basin 9.99€</ListGroupItemHeading>
+                    <div className="radio">
+                      <label>
+                        <input type="radio" value="basic"/>
+                        {' '}Basic 9.99€
+                      </label>
+                    </div> 
+                      </ListGroupItemHeading>
                     <ListGroupItemText>
                     Inclu une durée gratuite d'un mois(Abonnement une année), ajout de 2 contacts et 5 appareils connectés.
                     </ListGroupItemText>
                   </ListGroupItem>
                   <ListGroupItem action>
                     <ListGroupItemHeading>
-                    <AppSwitch className={'mx-1'} variant={'3d'} color={'primary'} />
-                      {' '}
-                      Pro 14.99€</ListGroupItemHeading>
+                    <div className="radio">
+                      <label>
+                        <input type="radio" value="pro"/>
+                        {' '}Pro 14.99€
+                      </label>
+                    </div> 
+                      </ListGroupItemHeading>
                     <ListGroupItemText>
                     Inclu une durée gratuite d'un mois(Abonnement une année), ajout de 5 contacts et 10 appareils connectés.
                     </ListGroupItemText>
                   </ListGroupItem>
                   <ListGroupItem action>
                     <ListGroupItemHeading>
-                    <AppSwitch className={'mx-1'} variant={'3d'} color={'primary'} />
-                      {' '}
-                      Unlimited 19.99€</ListGroupItemHeading>
+                      <div className="radio">
+                        <label>
+                          <input type="radio" value="unlimited"/>
+                          {' '}Unlimited 19.99€
+                        </label>
+                      </div> 
+                      </ListGroupItemHeading>
                     <ListGroupItemText>
                     Inclu une durée gratuite d'un mois(Abonnement une année), ajout illimité de contacts et d'appareils connectés.
                     </ListGroupItemText>
