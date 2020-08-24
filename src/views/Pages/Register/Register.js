@@ -1,8 +1,42 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardFooter, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+var axios = require('axios');
 
 class Register extends Component {
+
+  constructor(props){
+    super(props);
+    this.inscription= this.inscription.bind(this);
+}
+  inscription(){
+if((document.getElementById("email").value==="")||(document.getElementById("username").value==="")||(document.getElementById("pwd").value==="")){
+        alert("Error! Veuillez SVP renseignez le(s) champ(s) manquant(s)!");
+    }else {
+console.log(document.getElementById("pwd").value)
+
+      axios.post('http://localhost:3005/user/newadmin', {
+        username:document.getElementById("username").value,
+        email: document.getElementById("email").value,
+        pwd: document.getElementById("pwd").value
+      }).then(response => {
+        console.log(response)
+            // var x = 0
+            // x = response.data['code']
+          //  // console.log(response.data['inscription REUSSIE']['key'])
+          //   if (typeof  x === "undefined") {
+          //     console.log(x)
+          //      console.log(response.data['inscription reussie'])
+
+          //   }else {
+          //       alert("Error!" + response.data['Message']);
+          //   }
+        });
+
+    }
+}
+
+
   render() {
     return (
       <div className="app flex-row align-items-center">
@@ -20,13 +54,13 @@ class Register extends Component {
                           <i className="icon-user"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="text" placeholder="Nom/Prenom" autoComplete="username" />
+                      <Input type="text" placeholder="Nom/Prenom" autoComplete="username" id='username'/>
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>@</InputGroupText>
                       </InputGroupAddon>
-                      <Input type="text" placeholder="Email" autoComplete="email" />
+                      <Input type="text" placeholder="Email" autoComplete="email" id='email'/>
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
@@ -34,18 +68,11 @@ class Register extends Component {
                           <i className="icon-lock"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="password" placeholder="Mot de passe" autoComplete="new-password" />
+                      <Input type="password" placeholder="Mot de passe" autoComplete="new-password" id='pwd'/>
                     </InputGroup>
-                    <InputGroup className="mb-4">
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="icon-lock"></i>
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input type="password" placeholder="Confirmez votre mot de passe" autoComplete="new-password" />
-                    </InputGroup>
+
                     <Link to="/">
-                    <Button color="success" block>Creation !</Button>
+                    <Button color="success" block onClick={()=> this.inscription()}>Creation !</Button>
                     </Link>
                     <Link to="/login">
                     <Button block color="link">Vous avez deja un compte ? </Button>

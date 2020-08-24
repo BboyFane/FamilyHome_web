@@ -1,8 +1,86 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+var firebase = require('firebase');
+var firebaseui = require('firebaseui');
+var axios = require('axios');
 
+axios.post('/user', {
+  firstName: 'Fred',
+  lastName: 'Flintstone'
+})
+.then(function (response) {
+  console.log(response);
+})
+.catch(function (error) {
+  console.log(error);
+});
+// firebase.initializeApp();
+var firebaseConfig = {
+  // ...
+  apiKey: "AIzaSyA4LLLTEeRtEmpO_C_Q5x9PjGRmhxWQK_o",
+  authDomain: "familyhome-287021.firebaseapp.com",
+  databaseURL: "https://familyhome-287021.firebaseio.com",
+  projectId: "familyhome-287021",
+  storageBucket: "familyhome-287021.appspot.com",
+  messagingSenderId: "320323557266",
+  appId: "1:320323557266:web:1554050277b93e9f52934b",
+  measurementId: "G-DHY1HNJ3CM"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+ui.start('#firebaseui-auth-container', {
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+  ],
+  // Other config options...
+});
 class Login extends Component {
+
+
+  constructor(props){
+    super(props);
+    this.connexion= this.connexion.bind(this);
+}
+  connexion(){
+
+    if((document.getElementById("pwd").value==="")||(document.getElementById("email").value==="")){
+        alert("Error! Veuillez SVP renseignez le(s) champ(s) manquant(s)!");
+    }else {
+
+
+      axios.post('http://localhost:3005/user/connect', {
+        email: document.getElementById("email").value,
+        pwd: document.getElementById("pwd").value
+      }).then(response => {
+console.log(response)
+          //   var x = 0
+          //   x = response.data['code']
+          //  // console.log(response.data['CONNEXION REUSSIE']['key'])
+          //   if (typeof  x === "undefined") {
+          //     console.log(x)
+          //      console.log(response.data['CONNEXION REUSSIE'])
+
+          //   }else {
+          //       alert("Error!" + response.data['Message']);
+          //   }
+        });
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
   render() {
     return (
       <div className="app flex-row align-items-center">
@@ -21,7 +99,7 @@ class Login extends Component {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="text" placeholder="Email" autoComplete="username" />
+                        <Input type="text" placeholder="Email" id='email' autoComplete="username" />
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
@@ -29,22 +107,23 @@ class Login extends Component {
                             <i className="icon-lock"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="password" placeholder="Mot de passe" autoComplete="current-password" />
+                        <Input type="password" placeholder="Mot de passe" id='pwd' autoComplete="current-password" />
                       </InputGroup>
                       <Row>
                       <Link to="/dashboard">
                         <Col xs="6">
-                          <Button color="primary" className="px-4">Login</Button>
+                          <Button color="primary" className="px-4" onClick={()=> this.connexion()}>Login</Button>
                         </Col>
                         </Link>
-                        <Col xs="6">
-                        <a href="http://localhost:3000/#/login"><small>Se connecter avec Google?</small></a>
-                        </Col>
+                        
                       </Row>
                       <Row>
                         <Col xs="6" className="text-right">
                           <Button color="link" className="px-0">Mot de passe oublié?</Button>
                         </Col>
+                      </Row>
+                      <Row>
+                          <div id="firebaseui-auth-container"></div>
                       </Row>
                     </Form>
                   </CardBody>
@@ -57,6 +136,10 @@ class Login extends Component {
                       <Link to="/register">
                         <Button color="primary" className="mt-3" active tabIndex={-1}>Inscription</Button>
                       </Link>
+
+
+
+ 
                     </div>
                   </CardBody>
                 </Card>
